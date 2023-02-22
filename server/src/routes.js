@@ -1,6 +1,17 @@
 const express = require("express");
 const router = express.Router();
 const Z = require("zod");
+const { Client, Pool } = require("pg");
+
+const client = new Client({
+  host: "127.0.0.1",
+  port: 5432,
+  user: "postgres",
+  password: "felipe",
+  database: "ProjetoCrudd",
+});
+
+client.connect();
 
 router.get("/l", (req, res) => {
   res.send({
