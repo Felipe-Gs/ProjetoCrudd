@@ -88,6 +88,7 @@ router.delete("/delete/:id", (req, res) => {
     });
   }
 });
+
 // router.post("/usuario", async (req, res) => {
 //   try {
 //     const { nome, sobrenome, email, senha, profissao, idade } = req.body;
