@@ -66,6 +66,28 @@ router.post("/addUsuario", async (req, res) => {
     });
   }
 });
+
+router.delete("/delete/:id", (req, res) => {
+  const id = req.params.id;
+  try {
+    const query = `DELETE FROM usuario WHERE ID = ${id}`;
+    client.query(query, (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          message: "nao foi possivel deletar o usuario",
+        });
+      } else {
+        return res.status(200).send({
+          message: "usuario deletado com sucesso",
+        });
+      }
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "erro interno no servidor",
+    });
+  }
+});
 // router.post("/usuario", async (req, res) => {
 //   try {
 //     const { nome, sobrenome, email, senha, profissao, idade } = req.body;
