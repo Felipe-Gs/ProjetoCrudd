@@ -32,6 +32,36 @@ router.get("/buscarUsuarios", (req, res) => {
   }
 });
 
+router.get("/login", (req, res) => {
+  try {
+    const usuarioBody = Z.object({
+      email: Z.string().email(),
+      senha: Z.string().min(3),
+    }).required();
+    const validData = usuarioBody.parse(req.body);
+    const { email, senha } = validData;
+
+    const query = `SELECT * FROM usuario WHERE email = '${email}' AND senha = '${senha}'`;
+    client.query(query, (err, result) => {
+      if (err) {
+        return res.status(400).send({
+          message: "Nao foi possivel fazer o login, verifique o email e senha",
+        });
+      } else if (result.rows.length === 0) {
+        return res.status(404).send({
+          message: "Não existe usuario com esse email e senha",
+        });
+      } else {
+        return res.status(200).send({ usuario: result.rows[0] });
+      }
+    });
+  } catch (error) {
+    return res.status(500).send({
+      message: "erro interno no servidor",
+    });
+  }
+});
+
 router.post("/addUsuario", async (req, res) => {
   try {
     const usuarioBody = Z.object({
