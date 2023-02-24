@@ -3,6 +3,7 @@ const { Navigator, Screen } = createNativeStackNavigator();
 
 import Home from "./src/Pages/Home";
 import Login from "./src/Pages/Login";
+import VisualizarUsuario from "./src/Pages/VisualizarUsuario";
 
 export function Routes() {
   return (
@@ -14,6 +15,7 @@ export function Routes() {
     >
       <Screen name="Home" component={Home} />
       <Screen name="Login" component={Login} />
+      <Screen name="VisualizarUsuario" component={VisualizarUsuario} />
     </Navigator>
   );
 }
