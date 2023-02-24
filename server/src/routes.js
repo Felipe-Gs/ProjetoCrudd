@@ -32,7 +32,7 @@ router.get("/buscarUsuarios", (req, res) => {
   }
 });
 
-router.get("/login", (req, res) => {
+router.post("/login", (req, res) => {
   try {
     const usuarioBody = Z.object({
       email: Z.string().email(),
@@ -79,7 +79,7 @@ router.post("/addUsuario", async (req, res) => {
     VALUES ($1, $2, $3, $4, $5, $6)`;
     const values = [nome, sobrenome, email, senha, profissao, idade];
 
-    await client.query(query, values, (err, result) => {
+    client.query(query, values, (err, result) => {
       if (err) {
         return res.status(400).send({
           message: "dados invalidos",
