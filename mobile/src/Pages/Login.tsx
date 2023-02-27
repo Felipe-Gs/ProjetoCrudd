@@ -14,7 +14,7 @@ const Login = () => {
 
   useEffect(() => {
     {
-      usuario && navigate("VisualizarUsuario");
+      usuario.nome && navigate("VisualizarUsuario");
     }
   }, [usuario]);
   return (
@@ -50,12 +50,6 @@ const Login = () => {
       </View>
       {erro && <Text>{erro}</Text>}
       {/* {usuario && <Text>{usuario.sobrenome}</Text>} */}
-      <View style={styles.viewImage}>
-        <Image
-          style={{ resizeMode: "cover", width: "100%", height: "100%" }}
-          source={require("../imgs/casa.png")}
-        />
-      </View>
     </View>
   );
 };
@@ -65,8 +59,7 @@ export default Login;
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-
-    marginTop: 100,
+    marginTop: 50,
   },
   viewText: {
     width: "50%",
@@ -80,7 +73,7 @@ const styles = StyleSheet.create({
   },
   viewImage: {
     width: "100%",
-    height: 200,
+
     justifyContent: "center",
     alignItems: "center",
   },
