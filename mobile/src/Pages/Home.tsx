@@ -22,7 +22,11 @@ const Home = () => {
         >
           Login
         </Button>
-        <Button mode="outlined" style={{ width: "90%", marginTop: 20 }}>
+        <Button
+          onPress={() => navigate("CriarUsuario")}
+          mode="outlined"
+          style={{ width: "90%", marginTop: 20 }}
+        >
           Cadastrar
         </Button>
       </View>
@@ -58,7 +62,5 @@ const styles = StyleSheet.create({
     height: 200,
     justifyContent: "center",
     alignItems: "center",
-    position: "absolute",
-    bottom: 100,
   },
 });
