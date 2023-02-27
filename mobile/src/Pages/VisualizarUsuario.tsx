@@ -6,7 +6,8 @@ import { ParamListBase } from "@react-navigation/routers";
 import useAuth from "../hooks/useAuth";
 import api from "../axios/api";
 
-import { Avatar, Card, IconButton, Text } from "react-native-paper";
+import { Text } from "react-native-paper";
+import Cards from "../components/Cards";
 
 const VisualizarUsuario = () => {
   const { navigate } = useNavigation<NavigationProp<ParamListBase>>();
@@ -39,28 +40,18 @@ const VisualizarUsuario = () => {
         {users &&
           users.map((item: any, index) => {
             return (
-              <Card>
-                <Text variant="titleLarge">{item.idade}</Text>
-                <Card.Title
-                  key={index}
-                  title={item.nome}
-                  subtitle={item.profissao}
-                  left={(props) => <Avatar.Icon {...props} icon="folder" />}
-                  // right={(props) => (
-                  //   <IconButton {...props} icon="more-vert" onPress={() => {}} />
-                  // )}
-                />
-              </Card>
+              <Cards
+                key={index}
+                data={{
+                  nome: item.nome,
+                  email: item.email,
+                  profissao: item.profissao,
+                  idade: item.idade,
+                }}
+              />
             );
           })}
       </ScrollView>
-
-      <View style={styles.viewImage}>
-        <Image
-          style={{ resizeMode: "cover", width: "100%", height: "100%" }}
-          source={require("../imgs/casa.png")}
-        />
-      </View>
     </View>
   );
 };
@@ -87,7 +78,5 @@ const styles = StyleSheet.create({
     height: 200,
     justifyContent: "center",
     alignItems: "center",
-    position: "absolute",
-    bottom: 100,
   },
 });
